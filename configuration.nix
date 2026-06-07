@@ -101,6 +101,22 @@
   # Nix settings.
   nixpkgs.config.allowUnfree = true;
 
+  # Nix maintenance and updates.
+  system.autoUpgrade = {
+    enable = true;
+    flake = "/etc/nixos";
+    flags = [ "--print-build-logs" "--commit-lock-file" ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
+  };
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 3";
+    flake = "/etc/nixos"; # sets NH_OS_FLAKE variable for you
+  };
+
   # System packages.
   environment.shells = with pkgs; [ zsh ];
   environment.systemPackages = with pkgs; [
@@ -111,14 +127,6 @@
     vscode
     zoxide # Improved CD command
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
