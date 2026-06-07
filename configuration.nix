@@ -5,9 +5,7 @@
 { config, pkgs, ... }:
 
 {
-  # Imports.
-  imports = [ ./hardware-configuration.nix ];
-
+  
   # Boot and kernel.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -74,7 +72,6 @@
     enableCompletion = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
-    interactiveShellInit = "fastfetch";
 
     histSize = 10000;
     histFile = "$HOME/.zsh_history";
