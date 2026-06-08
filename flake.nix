@@ -1,15 +1,9 @@
 {
-	description = "Oppossome's binraider config";
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+		flake-parts.url = "github:hercules-ci/flake-parts";
+		import-tree.url = "github:denful/import-tree";
 	};
-	outputs = inputs: {
-		nixosConfigurations = {
-			binraider = inputs.nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
-				modules = [ ./hardware-configuration.nix ./configuration.nix ];
-				specialArgs = { inherit inputs; };
-			};
-		};
-	};
+	outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; }
+	(inputs.import-tree ./modules);
 }
