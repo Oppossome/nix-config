@@ -17,9 +17,9 @@
 			setOptions = [ "HIST_IGNORE_ALL_DUPS" ];
 
 			ohMyZsh = {
-			enable = true;
-			plugins = [ "git" ];
-			theme = "essembeh";
+                enable = true;
+                plugins = [ "git" ];
+                theme = "essembeh";
 			};
 		};
 
