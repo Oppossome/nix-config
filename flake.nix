@@ -5,6 +5,7 @@
 		import-tree.url = "github:denful/import-tree";
 		
 		nix-flatpak.url = "github:gmodena/nix-flatpak";
+		zen-browser.url = "github:youwen5/zen-browser-flake";
 	};
 	outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; }
 	(inputs.import-tree ./modules);

@@ -1,8 +1,8 @@
 { self, inputs, ... }: {
-	flake.nixosModules.programsGamingMinecraft = { pkgs, ... }: {
+	flake.nixosModules.programsGamingItch = { pkgs, ... }: {
 		imports = [ self.nixosModules.programsFlatpak ];
 		services.flatpak.packages = [
-			"org.prismlauncher.PrismLauncher"
+			"io.itch.itch"
 		];
 	};
 }
