@@ -23,7 +23,7 @@
 			};
 		};
 
-		environment.systemPackages = with pkgs; [ fastfetch git ];
+		environment.systemPackages = with pkgs; [ fastfetch git tree ];
 		users.defaultUserShell = pkgs.zsh;
 		environment.shells = [ pkgs.zsh ];
 	};

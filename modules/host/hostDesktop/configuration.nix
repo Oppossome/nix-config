@@ -5,7 +5,9 @@
 			self.nixosModules.desktopPlasma
 			self.nixosModules.shellZsh
 			self.nixosModules.userOpossum
-		];
+		] ++ builtins.attrValues (
+			inputs.nixpkgs.lib.filterAttrs (name: _: builtins.match "programs.*" name != null) self.nixosModules
+		);
 	};
 
 	flake.nixosModules.hostDesktopModule = { pkgs, ... }: {
