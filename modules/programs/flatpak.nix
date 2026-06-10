@@ -8,7 +8,7 @@
 			];
 			update.auto = {
 				enable = true;
-				onCalendar = "weekly"; # Default value
+				onCalendar = "daily";
 			};
 		};
 	};
