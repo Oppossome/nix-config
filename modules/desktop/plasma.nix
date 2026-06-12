@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-	flake.nixosModules.desktopPlasma = { pkgs, ... }: {
+	flake.nixosModules.desktopPlasma = { lib, pkgs, config, ... }: {
 		services.displayManager.sddm.enable = true;
 		services.desktopManager.plasma6.enable = true;
 		environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -9,6 +9,21 @@
 			plasma-browser-integration
 			qrca
 		];
+
+		# Screenshot config applied to all managed users via home-manager.
+		home-manager.users = lib.genAttrs config.managedUsers (_: {
+			programs.plasma.enable = true;
+			
+			programs.plasma.configFile.spectaclerc = {
+				General.clipboardGroup = "PostScreenshotCopyImage";
+				ImageSave.translatedScreenshotsFolder = "Screenshots";
+				VideoSave.translatedScreencastsFolder = "Screencasts";
+			};
+
+			programs.plasma.spectacle.shortcuts = {
+				captureRectangularRegion = "Meta+Shift+S";
+			};
+		});
 
 		# Audio stack.
 		services.pulseaudio.enable = false;
