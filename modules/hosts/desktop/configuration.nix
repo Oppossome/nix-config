@@ -1,7 +1,7 @@
 { self, inputs, ... }: {
-	flake.nixosConfigurations.hostDesktop = inputs.nixpkgs.lib.nixosSystem {
+	flake.nixosConfigurations.hostsDesktop = inputs.nixpkgs.lib.nixosSystem {
 		modules = [
-			self.nixosModules.hostDesktopModule
+			self.nixosModules.hostsDesktopModule
 			self.nixosModules.userCommon
 			self.nixosModules.userOpossum
 			
@@ -12,10 +12,10 @@
 		);
 	};
 
-	flake.nixosModules.hostDesktopModule = { pkgs, ... }: {
+	flake.nixosModules.hostsDesktopModule = { pkgs, ... }: {
 		imports = [
-			self.nixosModules.hostCommon
-			self.nixosModules.hostDesktopHardware
+			self.nixosModules.hostsCommon
+			self.nixosModules.hostsDesktopHardware
 		];
 
 		boot.loader.grub.enable = true;

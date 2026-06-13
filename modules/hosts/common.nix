@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-	flake.nixosModules.hostCommon = { pkgs, config, ... }: {
+	flake.nixosModules.hostsCommon = { pkgs, config, ... }: {
 		imports = [ inputs.home-manager.nixosModules.home-manager ];
 
 		# Home Manager
