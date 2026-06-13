@@ -6,7 +6,6 @@
 		}) ["gaming"];
 
 		programs.steam.remotePlay.openFirewall = true;
-		programs.steam.dedicatedServer.openFirewall = true;		
 		programs.gamemode.enable = true;
 
 		# Enable uinput kernel module (required for many controllers)
