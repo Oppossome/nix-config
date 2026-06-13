@@ -1,6 +1,8 @@
 { self, inputs, ... }: {
 	flake.nixosModules.programsFlatpak = { pkgs, helpers, ... }: {
 		imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+		home-manager.sharedModules = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
+
 		services.flatpak = {
 			enable = true;
 			packages = [
