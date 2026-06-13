@@ -40,7 +40,8 @@
 		environment.systemPackages = with pkgs; [
 			ghostty
 			kdePackages.sddm-kcm # KDE SDDM Manager
-			nur.repos.ccicnce113424.waywallen-bin # Waywallen
+			nur.repos.ccicnce113424.waywallen-bin
+			nur.repos.ccicnce113424.waywallen-display-bin
 		];
 	};
 }
