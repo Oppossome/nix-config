@@ -1,8 +1,8 @@
 { self, inputs, ... }: {
-	flake.nixosModules.programsGamingItch = { pkgs, ... }: {
+	flake.nixosModules.programsGamingItch = { pkgs, helpers, ... }: {
 		imports = [ self.nixosModules.programsFlatpak ];
-		services.flatpak.packages = [
-			"io.itch.itch"
-		];
+		home-manager.users = helpers.mapUsers (_: {
+			services.flatpak.packages = [ "io.itch.itch" ];
+		}) ["gaming"];
 	};
 }

@@ -1,8 +1,8 @@
 { self, inputs, ... }: {
-	flake.nixosModules.programsGamingMinecraft = { pkgs, ... }: {
+	flake.nixosModules.programsGamingMinecraft = { pkgs, helpers, ... }: {
 		imports = [ self.nixosModules.programsFlatpak ];
-		services.flatpak.packages = [
-			"org.prismlauncher.PrismLauncher"
-		];
+		home-manager.users = helpers.mapUsers (_: {
+			services.flatpak.packages = [ "org.prismlauncher.PrismLauncher" ];
+		}) ["gaming"];
 	};
 }

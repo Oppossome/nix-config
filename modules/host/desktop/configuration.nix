@@ -2,10 +2,11 @@
 	flake.nixosConfigurations.hostDesktop = inputs.nixpkgs.lib.nixosSystem {
 		modules = [
 			self.nixosModules.hostDesktopModule
-			self.nixosModules.desktopPlasma
-			self.nixosModules.shellZsh
 			self.nixosModules.userCommon
 			self.nixosModules.userOpossum
+			
+			self.nixosModules.desktopPlasma
+			self.nixosModules.shellZsh
 		] ++ builtins.attrValues (
 			inputs.nixpkgs.lib.filterAttrs (name: _: builtins.match "programs.*" name != null) self.nixosModules
 		);

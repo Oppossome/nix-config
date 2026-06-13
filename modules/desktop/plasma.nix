@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-	flake.nixosModules.desktopPlasma = { lib, pkgs, config, ... }: {
+	flake.nixosModules.desktopPlasma = { pkgs, helpers, ... }: {
 		services.displayManager.sddm.enable = true;
 		services.desktopManager.plasma6.enable = true;
 		environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -11,7 +11,7 @@
 		];
 
 		# Screenshot config applied to all managed users via home-manager.
-		home-manager.users = lib.genAttrs config.managedUsers (_: {
+		home-manager.users = helpers.mapUsers (_: {
 			programs.plasma.enable = true;
 			
 			programs.plasma.configFile.spectaclerc = {
@@ -23,7 +23,7 @@
 			programs.plasma.spectacle.shortcuts = {
 				captureRectangularRegion = "Meta+Shift+S";
 			};
-		});
+		}) [];
 
 		# Audio stack.
 		services.pulseaudio.enable = false;
