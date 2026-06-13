@@ -26,6 +26,7 @@
 		# Networking and hardware.
 		networking.hostName = "desktop";
 		networking.networkmanager.enable = true;
+		networking.networkmanager.wifi.powersave = false;
 		hardware.bluetooth.enable = true;
 
 		# This value determines the NixOS release from which the default
