@@ -10,6 +10,13 @@
 			qrca
 		];
 
+		# Enable KDE Connect
+		programs.kdeconnect.enable = true;
+		networking.firewall = rec {
+			allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+			allowedUDPPortRanges = allowedTCPPortRanges;
+		};
+
 		# Screenshot config applied to all managed users via home-manager.
 		home-manager.users = helpers.mapUsers (_: {
 			programs.plasma.enable = true;
