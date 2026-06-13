@@ -1,6 +1,5 @@
 { self, inputs, ... }: {
 	flake.nixosModules.programsSpotify = { pkgs, ... }: {
-		imports = [ self.nixosModules.programsFlatpak ];
 		services.flatpak.packages = [
 			"com.spotify.Client"
 		];

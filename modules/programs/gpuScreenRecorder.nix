@@ -1,8 +1,7 @@
 { self, inputs, ... }: {
 	flake.nixosModules.programsGPUScreenRecorder = { pkgs, ... }: {
-		programs.gpu-screen-recorder.enable = true;
-		environment.systemPackages = with pkgs; [
-			gpu-screen-recorder-gtk
+		services.flatpak.packages = [
+			"com.dec05eba.gpu_screen_recorder"
 		];
 	};
 }
