@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 	flake.nixosModules.userOpossum = { pkgs, ... }: {
-		managedUsers = { opossum = [ "gaming" "development" ]; };
+		managedUsers = { opossum = [ "development" "gaming" "maker" ]; };
 		
 		users.users.opossum = {
 			description = "Sera Cutler";

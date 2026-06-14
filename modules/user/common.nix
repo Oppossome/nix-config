@@ -1,7 +1,7 @@
 { self, inputs, ... }: {
 	flake.nixosModules.userCommon = { lib, config, helpers, ... }: {
 		options.managedUsers = lib.mkOption {
-			type = lib.types.attrsOf (lib.types.listOf (lib.types.enum [ "gaming" "development" ]));
+			type = lib.types.attrsOf (lib.types.listOf (lib.types.enum [ "development" "gaming" "maker" ]));
 			description = "Managed users and their application kinds.";
 			default = {};
 		};
