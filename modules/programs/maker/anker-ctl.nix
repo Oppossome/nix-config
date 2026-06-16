@@ -1,6 +1,8 @@
 { self, inputs, ... }: {
-	flake.nixosModules.programsMakerAnkerCtl = { pkgs, ... }:
+	flake.nixosModules.programsMakerAnkerCtl = { pkgs, helpers, ... }:
 	let
+		printerIp = "192.168.0.113";
+
 		tinyecPkg = pkgs.python3Packages.buildPythonPackage rec {
 			pname = "tinyec";
 			version = "0.4.0";
@@ -49,5 +51,19 @@
 		home-manager.users = helpers.mapUsers (_: {
 			home.packages = [ ankerctlPkg ];
 		}) [ "maker" ];
+
+		networking.firewall = {
+			allowedUDPPorts = [ 32108 ];
+
+			# Rules specific to my setup. 
+			extraCommands = ''
+				iptables -A nixos-fw -p udp -s ${printerIp} -j nixos-fw-accept
+    			iptables -A nixos-fw -p udp -d 224.0.0.0/4 -j nixos-fw-accept
+			'';
+			extraStopCommands = ''
+				iptables -D nixos-fw -p udp -s ${printerIp} -j nixos-fw-accept 2>/dev/null || true
+				iptables -D nixos-fw -p udp -d 224.0.0.0/4 -j nixos-fw-accept 2>/dev/null || true
+			'';
+		};
 	};
 }

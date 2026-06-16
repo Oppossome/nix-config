@@ -15,6 +15,7 @@
 				"extensions.pocket.enabled" = false;
 				"signon.rememberSignons" = false;
 				"browser.contextual-password-manager.enabled" = false;
+				"browser.ctrlTab.recentlyUsedOrder" = true;
 			};
 
 			extensions = [
