@@ -24,6 +24,9 @@
 			url = "github:youwen5/zen-browser-flake";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		solaar = {
+			url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
+		};
 	};
 	outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; }
 	(inputs.import-tree ./modules);

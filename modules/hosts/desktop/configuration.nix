@@ -16,6 +16,7 @@
 		imports = [
 			self.nixosModules.hostsCommon
 			self.nixosModules.hostsDesktopHardware
+			inputs.solaar.nixosModules.default
 		];
 
 		boot.loader.grub.enable = true;
@@ -28,6 +29,9 @@
 		networking.networkmanager.enable = true;
 		networking.networkmanager.wifi.powersave = false;
 		hardware.bluetooth.enable = true;
+
+		# Mouse and Keyboard
+		services.solaar.enable = true;
 
 		# This value determines the NixOS release from which the default
 		# settings for stateful data, like file locations and database versions
