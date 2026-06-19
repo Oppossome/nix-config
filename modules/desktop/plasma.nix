@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-	flake.nixosModules.desktopPlasma = { pkgs, helpers, ... }: {
+	flake.nixosModules.desktopPlasma = { pkgs, helpers, lib, ... }: {
 		services.displayManager.sddm.enable = true;
 		services.desktopManager.plasma6.enable = true;
 		environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -16,21 +16,6 @@
 			allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
 			allowedUDPPortRanges = allowedTCPPortRanges;
 		};
-
-		# Screenshot config applied to all managed users via home-manager.
-		home-manager.users = helpers.mapUsers (_: {
-			programs.plasma.enable = true;
-			
-			programs.plasma.configFile.spectaclerc = {
-				General.clipboardGroup = "PostScreenshotCopyImage";
-				ImageSave.translatedScreenshotsFolder = "Screenshots";
-				VideoSave.translatedScreencastsFolder = "Screencasts";
-			};
-
-			programs.plasma.spectacle.shortcuts = {
-				captureRectangularRegion = "Meta+Shift+S";
-			};
-		}) [];
 
 		# Audio stack.
 		services.pulseaudio.enable = false;
@@ -50,5 +35,33 @@
 			nur.repos.ccicnce113424.waywallen-bin
 			nur.repos.ccicnce113424.waywallen-display-bin
 		];
+
+		# Screenshot config applied to all managed users via home-manager.
+		home-manager.users = helpers.mapUsers (_: {
+			programs.plasma.enable = true;
+			
+			programs.plasma.configFile.spectaclerc = {
+				General.clipboardGroup = "PostScreenshotCopyImage";
+				ImageSave.translatedScreenshotsFolder = "Screenshots";
+				VideoSave.translatedScreencastsFolder = "Screencasts";
+			};
+
+			programs.plasma.spectacle.shortcuts = {
+				captureRectangularRegion = "Meta+Shift+S";
+			};
+
+			xdg.configFile."autostart/waywallen.desktop" = {
+				force = true;
+				text = lib.generators.toINI {} {
+					"Desktop Entry" = {
+						Type = "Application";
+						Name = "Waywallen";
+						Exec = "waywallen --no-ui";
+						Terminal = false;
+						StartupNotify = false;
+					};
+				};
+			};
+		}) [];
 	};
 }
