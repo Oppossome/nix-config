@@ -1,5 +1,7 @@
 { self, inputs, ... }: {
 	flake.nixosModules.shellZsh = { pkgs, ... }: {
+		programs.direnv.enable = true;
+
 		programs.zoxide = {
 			enable = true;
 			enableZshIntegration = true;

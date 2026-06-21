@@ -29,6 +29,7 @@
 			#jack.enable = true;
 		};
 
+		programs.partition-manager.enable = true;
 		environment.systemPackages = with pkgs; [
 			ghostty
 			kdePackages.sddm-kcm # KDE SDDM Manager
@@ -37,13 +38,14 @@
 		];
 
 		# Screenshot config applied to all managed users via home-manager.
-		home-manager.users = helpers.mapUsers (_: {
+		home-manager.users = helpers.mapUsers (user: {
 			programs.plasma.enable = true;
 			
 			programs.plasma.configFile.spectaclerc = {
 				General.clipboardGroup = "PostScreenshotCopyImage";
 				ImageSave.translatedScreenshotsFolder = "Screenshots";
 				VideoSave.translatedScreencastsFolder = "Screencasts";
+				VideoSave.videoSaveLocation="file:///home/${user}/Videos/Replays/";
 			};
 
 			programs.plasma.spectacle.shortcuts = {
