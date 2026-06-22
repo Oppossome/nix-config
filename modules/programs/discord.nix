@@ -1,5 +1,9 @@
 { self, inputs, ... }: {
 	flake.nixosModules.programsDiscord = { pkgs, helpers, lib, ... }: {
+		nixpkgs.config.permittedInsecurePackages = [
+			"pnpm-10.29.2"
+		];
+		
 		environment.systemPackages = with pkgs; [
 			vesktop
 		];

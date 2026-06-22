@@ -22,13 +22,7 @@
 
 		programs.steam.remotePlay.openFirewall = true;
 		programs.gamemode.enable = true;
-
-		# Enable uinput kernel module (required for many controllers)
-		hardware.uinput.enable = true;
-
-		# Add udev rules for Steam input devices
-		services.udev.packages = with pkgs; [
-			steam-devices-udev-rules
-		];
+		
+		hardware.steam-hardware.enable = true;
 	};
 }

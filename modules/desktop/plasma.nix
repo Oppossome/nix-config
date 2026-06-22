@@ -32,7 +32,9 @@
 		programs.partition-manager.enable = true;
 		environment.systemPackages = with pkgs; [
 			ghostty
+			kdePackages.kamoso
 			kdePackages.sddm-kcm # KDE SDDM Manager
+			kdePackages.filelight
 			nur.repos.ccicnce113424.waywallen-bin
 			nur.repos.ccicnce113424.waywallen-display-bin
 		];
@@ -50,6 +52,12 @@
 
 			programs.plasma.spectacle.shortcuts = {
 				captureRectangularRegion = "Meta+Shift+S";
+			};
+
+			programs.plasma.configFile.kwinrc = {
+				Windows.PerOutputVirtualDesktops = true;
+				EdgeBarrier.CornerBarrier = false;
+				EdgeBarrier.EdgeBarrier = 0;
 			};
 
 			xdg.configFile."autostart/waywallen.desktop" = {
