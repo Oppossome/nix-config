@@ -35,9 +35,23 @@
 			kdePackages.kamoso
 			kdePackages.sddm-kcm # KDE SDDM Manager
 			kdePackages.filelight
-			nur.repos.ccicnce113424.waywallen-bin
+			kdePackages.fcitx5-configtool
+		 	nur.repos.ccicnce113424.waywallen-bin
 			nur.repos.ccicnce113424.waywallen-display-bin
 		];
+
+		i18n.inputMethod = {
+			enable = true;
+			type = "fcitx5";
+			fcitx5 = {
+				waylandFrontend = true;
+				addons = with pkgs; [
+					kdePackages.fcitx5-qt
+					qt6Packages.fcitx5-chinese-addons
+					fcitx5-nord
+				];
+			};
+		};
 
 		# Screenshot config applied to all managed users via home-manager.
 		home-manager.users = helpers.mapUsers (user: {
