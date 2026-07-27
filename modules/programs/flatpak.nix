@@ -5,9 +5,7 @@
 
 		services.flatpak = {
 			enable = true;
-			packages = [
-				"com.github.tchx84.Flatseal"
-			];
+			packages = [ "com.github.tchx84.Flatseal" ];
 			update.auto = {
 				enable = true;
 				onCalendar = "daily";
