@@ -3,7 +3,7 @@
 		managedUsers = { opossum = [ "development" "gaming" "maker" ]; };
 		
 		users.users.opossum = {
-			description = "Sera Cutler";
+			description = "Opossum";
 			extraGroups = [ "networkmanager" "wheel" "docker" ];
 			isNormalUser = true;
 		};

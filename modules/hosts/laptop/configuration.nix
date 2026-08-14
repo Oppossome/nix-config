@@ -4,6 +4,7 @@
 			self.nixosModules.hostsLaptopModule
 			self.nixosModules.userCommon
 			self.nixosModules.userOpossum
+			self.nixosModules.userOdoo
 			
 			self.nixosModules.desktopPlasma
 			self.nixosModules.shellZsh
