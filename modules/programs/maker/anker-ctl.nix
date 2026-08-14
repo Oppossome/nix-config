@@ -58,7 +58,7 @@
 			# Rules specific to my setup. 
 			extraCommands = ''
 				iptables -A nixos-fw -p udp -s ${printerIp} -j nixos-fw-accept
-    			iptables -A nixos-fw -p udp -d 224.0.0.0/4 -j nixos-fw-accept
+				iptables -A nixos-fw -p udp -d 224.0.0.0/4 -j nixos-fw-accept
 			'';
 			extraStopCommands = ''
 				iptables -D nixos-fw -p udp -s ${printerIp} -j nixos-fw-accept 2>/dev/null || true

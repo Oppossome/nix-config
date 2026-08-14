@@ -8,6 +8,7 @@
 
 		flake-parts.url = "github:hercules-ci/flake-parts";
 		import-tree.url = "github:denful/import-tree";
+		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
 		home-manager = {
 			url = "github:nix-community/home-manager";
@@ -24,9 +25,7 @@
 			url = "github:youwen5/zen-browser-flake";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		solaar = {
-			url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
-		};
+		solaar.url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
 	};
 	outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; }
 	(inputs.import-tree ./modules);

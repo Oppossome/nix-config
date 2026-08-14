@@ -16,17 +16,17 @@
 		imports = [
 			self.nixosModules.hostsCommon
 			self.nixosModules.hostsLaptopHardware
+			inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
 			# inputs.solaar.nixosModules.default
 		];
 
-        boot.loader.systemd-boot.enable = true;
-        boot.loader.efi.canTouchEfiVariables = true;
-        boot.kernelPackages = pkgs.linuxPackages_latest;
+		boot.loader.systemd-boot.enable = true;
+		boot.loader.efi.canTouchEfiVariables = true;
+		boot.kernelPackages = pkgs.linuxPackages_latest;
 
 		# Networking and hardware.
 		networking.hostName = "laptop";
 		networking.networkmanager.enable = true;
-		networking.networkmanager.wifi.powersave = false;
 		hardware.bluetooth.enable = true;
 
 		# Fingerprint Scanner
