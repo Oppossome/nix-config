@@ -18,7 +18,6 @@
 			self.nixosModules.hostsCommon
 			self.nixosModules.hostsLaptopHardware
 			inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
-			# inputs.solaar.nixosModules.default
 		];
 
 		boot.loader.systemd-boot.enable = true;
@@ -34,7 +33,7 @@
 		services.fprintd.enable = true;
 
 		# Mouse and Keyboard
-		# services.solaar.enable = true;
+		environment.systemPackages = [ pkgs.solaar ];
 
 		# This value determines the NixOS release from which the default
 		# settings for stateful data, like file locations and database versions

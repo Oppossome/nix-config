@@ -16,7 +16,6 @@
 		imports = [
 			self.nixosModules.hostsCommon
 			self.nixosModules.hostsDesktopHardware
-			inputs.solaar.nixosModules.default
 		];
 
 		boot.loader.grub.enable = true;
@@ -31,7 +30,7 @@
 		hardware.bluetooth.enable = true;
 
 		# Mouse and Keyboard
-		services.solaar.enable = true;
+		environment.systemPackages = [ pkgs.solaar ];
 
 		# This value determines the NixOS release from which the default
 		# settings for stateful data, like file locations and database versions
