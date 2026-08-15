@@ -34,6 +34,11 @@
 			flake = "/etc/nixos"; # sets NH_OS_FLAKE variable for you
 		};
 
+		# Keep nixos config tree writable for wheel users
+		system.activationScripts.nixosWheelOwnership.text = ''
+			chgrp -R wheel /etc/nixos
+		'';
+
 		# Services
 		services.printing.enable = true;
 	};

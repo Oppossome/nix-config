@@ -36,8 +36,9 @@
 		# Fingerprint Scanner
 		services.fprintd.enable = true;
 
-		# Mouse and Keyboard
-		environment.systemPackages = [ pkgs.solaar ];
+		environment.systemPackages = [ 
+			pkgs.solaar
+		];
 
 		# This value determines the NixOS release from which the default
 		# settings for stateful data, like file locations and database versions
