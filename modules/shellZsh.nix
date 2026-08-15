@@ -26,10 +26,12 @@
 		};
 
 		environment.systemPackages = with pkgs; [
+			bubblewrap
 			fastfetch
 			git
 			jq
 			ripgrep
+			socat
 			tree
 			yq
 		];

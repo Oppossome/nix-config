@@ -25,9 +25,13 @@
 		boot.kernelPackages = pkgs.linuxPackages_latest;
 
 		# Networking and hardware.
-		networking.hostName = "laptop";
-		networking.networkmanager.enable = true;
 		hardware.bluetooth.enable = true;
+		networking.hostName = "laptop";
+		networking.networkmanager = {
+			enable = true;
+			plugins = with pkgs; [ networkmanager-openvpn ];
+			wifi.powersave = false;
+		};
 
 		# Fingerprint Scanner
 		services.fprintd.enable = true;
