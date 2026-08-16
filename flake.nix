@@ -5,7 +5,7 @@
 			url = "github:nix-community/NUR";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
+		
 		flake-parts.url = "github:hercules-ci/flake-parts";
 		import-tree.url = "github:denful/import-tree";
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";

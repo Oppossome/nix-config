@@ -38,6 +38,10 @@
 
 		environment.systemPackages = [ 
 			pkgs.solaar
+			(pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+				[General]
+				background = "/etc/nixos/modules/hosts/laptop/wallpaper.png"
+			'')
 		];
 
 		# This value determines the NixOS release from which the default
