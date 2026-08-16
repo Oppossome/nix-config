@@ -17,7 +17,6 @@
 		imports = [
 			self.nixosModules.hostsCommon
 			self.nixosModules.hostsLaptopHardware
-			inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
 		];
 
 		boot.loader.systemd-boot.enable = true;

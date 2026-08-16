@@ -8,7 +8,6 @@
 		
 		flake-parts.url = "github:hercules-ci/flake-parts";
 		import-tree.url = "github:denful/import-tree";
-		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
 		home-manager = {
 			url = "github:nix-community/home-manager";
