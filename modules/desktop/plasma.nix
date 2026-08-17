@@ -35,6 +35,7 @@
 			kdePackages.kamoso
 			kdePackages.sddm-kcm # KDE SDDM Manager
 			kdePackages.filelight
+			kdePackages.ksystemlog
 			kdePackages.isoimagewriter
 			kdePackages.fcitx5-configtool
 		 	nur.repos.ccicnce113424.waywallen-bin
