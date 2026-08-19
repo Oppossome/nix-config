@@ -1,7 +1,10 @@
 { self, inputs, ... }: {
 	flake.nixosModules.programsGamingSteam = { pkgs, helpers, lib, ... }: {
 		home-manager.users = helpers.mapUsers (_: {
-			services.flatpak.packages = [ "com.valvesoftware.Steam" ];
+			services.flatpak.packages = [
+				"com.valvesoftware.Steam"
+				"org.freedesktop.Platform.VulkanLayer.gamescope//25.08"
+			];
 
 			xdg.configFile."autostart/com.valvesoftware.Steam.desktop" = {
 				force = true;
