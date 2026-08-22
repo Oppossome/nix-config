@@ -23,6 +23,8 @@
 		boot.loader.efi.canTouchEfiVariables = true;
 		boot.kernelPackages = pkgs.linuxPackages_latest;
 
+		services.fwupd.enable = true;
+		
 		# Networking and hardware.
 		hardware.bluetooth.enable = true;
 		networking.hostName = "laptop";
@@ -41,6 +43,14 @@
 				[General]
 				background = "/etc/nixos/modules/hosts/laptop/wallpaper.png"
 			'')
+		];
+
+
+		# Fixes audio issues
+		# See: https://github.com/NixOS/nixos-hardware/blob/0471accf8d0a8210b31d947497d179ecc99e0021/framework/13-inch/amd-ai-300-series/default.nix#L31-L34
+		boot.blacklistedKernelModules = [
+			"snd_acp70"
+			"snd_acp_pci"
 		];
 
 		# This value determines the NixOS release from which the default
