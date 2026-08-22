@@ -19,23 +19,12 @@
 			self.nixosModules.hostsLaptopHardware
 		];
 
-		boot.loader.systemd-boot.enable = true;
-		boot.loader.efi.canTouchEfiVariables = true;
+		# Fixes audio issues
+		# See: https://github.com/NixOS/nixos-hardware/blob/0471accf8d0a8210b31d947497d179ecc99e0021/framework/13-inch/amd-ai-300-series/default.nix#L31-L34
+		boot.blacklistedKernelModules = ["snd_acp70" "snd_acp_pci"];
 		boot.kernelPackages = pkgs.linuxPackages_latest;
-
-		services.fwupd.enable = true;
-		
-		# Networking and hardware.
-		hardware.bluetooth.enable = true;
-		networking.hostName = "laptop";
-		networking.networkmanager = {
-			enable = true;
-			plugins = with pkgs; [ networkmanager-openvpn ];
-			wifi.powersave = false;
-		};
-
-		# Fingerprint Scanner
-		services.fprintd.enable = true;
+		boot.loader.efi.canTouchEfiVariables = true;
+		boot.loader.systemd-boot.enable = true;
 
 		environment.systemPackages = [ 
 			pkgs.solaar
@@ -45,13 +34,18 @@
 			'')
 		];
 
+		hardware.bluetooth.enable = true;
 
-		# Fixes audio issues
-		# See: https://github.com/NixOS/nixos-hardware/blob/0471accf8d0a8210b31d947497d179ecc99e0021/framework/13-inch/amd-ai-300-series/default.nix#L31-L34
-		boot.blacklistedKernelModules = [
-			"snd_acp70"
-			"snd_acp_pci"
-		];
+		networking.hostName = "laptop";
+		networking.networkmanager = {
+			enable = true;
+			plugins = with pkgs; [ networkmanager-openvpn ];
+			wifi.powersave = false;
+		};
+
+		services.fprintd.enable = true;
+		services.fwupd.enable = true;
+		services.power-profiles-daemon.enable = true;
 
 		# This value determines the NixOS release from which the default
 		# settings for stateful data, like file locations and database versions

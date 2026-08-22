@@ -18,13 +18,16 @@
 			self.nixosModules.hostsDesktopHardware
 		];
 
-		boot.loader.grub.enable = true;
-		boot.loader.grub.device = "/dev/sda";
-		boot.loader.grub.useOSProber = true;
 		boot.kernelPackages = pkgs.linuxPackages_latest;
+		boot.loader.grub.device = "/dev/sda";
+		boot.loader.grub.enable = true;
+		boot.loader.grub.useOSProber = true;
 
-		# Networking and hardware.
+		environment.systemPackages = [ pkgs.solaar ];
+
 		hardware.bluetooth.enable = true;
+
+		# Networking.
 		networking.hostName = "desktop";
 		networking.networkmanager = {
 			enable = true;
@@ -32,9 +35,8 @@
 			wifi.powersave = false;
 		};
 
-		# Mouse and Keyboard
-		environment.systemPackages = [ pkgs.solaar ];
-
+		services.fwupd.enable = true;
+		
 		# This value determines the NixOS release from which the default
 		# settings for stateful data, like file locations and database versions
 		# on your system were taken. It's perfectly fine and recommended to leave

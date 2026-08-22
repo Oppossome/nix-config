@@ -37,6 +37,8 @@
 		# Keep nixos config tree writable for wheel users
 		system.activationScripts.nixosWheelOwnership.text = ''
 			chgrp -R wheel /etc/nixos
+			find /etc/nixos -type d -exec chmod 2775 {} +
+			find /etc/nixos -type f -exec chmod 664 {} +
 		'';
 
 		# Services
