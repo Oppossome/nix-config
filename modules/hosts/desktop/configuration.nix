@@ -33,6 +33,10 @@
 			enable = true;
 			plugins = with pkgs; [ networkmanager-openvpn ];
 		};
+		
+		# Disable awful network card.
+		boot.initrd.kernelModules = [ "pci_stub" ]; 
+		boot.kernelParams = [ "pci-stub.ids=10ec:b851" ]; 
 
 		services.fwupd.enable = true;
 		
