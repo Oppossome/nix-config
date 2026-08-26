@@ -19,13 +19,15 @@
 			self.nixosModules.hostsLaptopHardware
 		];
 
-		# Fixes audio issues
-		# See: https://github.com/NixOS/nixos-hardware/blob/0471accf8d0a8210b31d947497d179ecc99e0021/framework/13-inch/amd-ai-300-series/default.nix#L31-L34
-		boot.blacklistedKernelModules = ["snd_acp70" "snd_acp_pci"];
+		# Boot
 		boot.kernelPackages = pkgs.linuxPackages_latest;
 		boot.loader.efi.canTouchEfiVariables = true;
-		boot.loader.systemd-boot.enable = true;
+		boot.loader.limine = {
+			enable = true;
+			efiSupport = true;
+		};
 
+		# Packages
 		environment.systemPackages = [ 
 			pkgs.solaar
 			(pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
@@ -34,15 +36,18 @@
 			'')
 		];
 
+		# Hardware
 		hardware.bluetooth.enable = true;
 
+		# Networking
 		networking.hostName = "laptop";
 		networking.networkmanager = {
 			enable = true;
 			plugins = with pkgs; [ networkmanager-openvpn ];
-			wifi.powersave = false;
+			wifi.powersave = true;
 		};
 
+		# Services
 		services.fprintd.enable = true;
 		services.fwupd.enable = true;
 		services.power-profiles-daemon.enable = true;

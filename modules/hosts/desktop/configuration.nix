@@ -32,7 +32,6 @@
 		networking.networkmanager = {
 			enable = true;
 			plugins = with pkgs; [ networkmanager-openvpn ];
-			wifi.powersave = false;
 		};
 
 		services.fwupd.enable = true;

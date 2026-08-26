@@ -15,7 +15,6 @@
 		home-manager.users = helpers.mapUsers (_: {
 			services.flatpak = {
 				enable = true;
-				packages = [ "com.github.tchx84.Flatseal" ];
 				update.auto = {
 					enable = true;
 					onCalendar = "daily";
