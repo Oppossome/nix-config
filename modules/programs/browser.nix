@@ -67,6 +67,12 @@
 										IconURL = "https://noogle.dev/favicon.ico";
 										Alias = "@ng";
 									}
+									{
+										Name = "hanzicraft";
+										URLTemplate = "https://hanzicraft.com/character/{searchTerms}";
+										IconURL = "https://hanzicraft.com/favicon.ico";
+										Alias = "@hc";
+									}
 								];
 							};
 						};
