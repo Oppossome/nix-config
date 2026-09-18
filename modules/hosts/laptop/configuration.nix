@@ -6,6 +6,7 @@
 			self.nixosModules.userOpossum
 			self.nixosModules.userOdoo
 			
+			self.nixosModules.desktopHyprshell
 			self.nixosModules.desktopPlasma
 			self.nixosModules.shellZsh
 		] ++ builtins.attrValues (

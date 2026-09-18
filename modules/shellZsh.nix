@@ -31,6 +31,7 @@
 			git
 			jq
 			ripgrep
+			rtk
 			socat
 			tree
 			yq
