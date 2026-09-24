@@ -28,7 +28,13 @@
 		in {
 			environment.systemPackages = [
 				(pkgs.wrapFirefox
-					inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
+					(inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped.overrideAttrs (old: {
+						# https://github.com/youwen5/zen-browser-flake/issues/19
+						passthru = (old.passthru or { }) // {
+							withFFmpeg = true;
+							withGSSAPI = true;
+						};
+					}))
 					{
 						extraPrefs = lib.concatLines (
 							lib.mapAttrsToList (
