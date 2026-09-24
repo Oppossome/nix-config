@@ -8,6 +8,8 @@
 
 		environment.systemPackages = with pkgs; [
 			hyprlauncher
+			hyprpicker
+			hyprshot
 			quickshell
 		];
 	};

@@ -52,6 +52,7 @@
 		services.fprintd.enable = true;
 		services.fwupd.enable = true;
 		services.power-profiles-daemon.enable = true;
+		services.framework-control.enable = true;
 
 		# This value determines the NixOS release from which the default
 		# settings for stateful data, like file locations and database versions

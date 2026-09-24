@@ -35,12 +35,16 @@
 		};
 
 		# Keep nixos config tree writable for wheel users
-		system.activationScripts.nixosWheelOwnership.text = ''
-			chgrp -R wheel /etc/nixos
-			find /etc/nixos -type d -exec chmod 2775 {} +
-			find /etc/nixos -type f -exec chmod 664 {} +
-		'';
-
+		# Keep nixos config tree writable for wheel users
+        system.activationScripts.nixosWheelOwnership.text = ''
+            chgrp -R wheel /etc/nixos
+            chmod -R g+rwX /etc/nixos
+            chmod g+s /etc/nixos
+			
+            # Default ACLs so new files/dirs are group-writable automatically
+            setfacl -R -m g:wheel:rwX /etc/nixos
+            setfacl -R -d -m g:wheel:rwX /etc/nixos
+        '';
 		# Services
 		services.printing.enable = true;
 	};
