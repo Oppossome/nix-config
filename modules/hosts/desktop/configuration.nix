@@ -23,8 +23,7 @@
 		boot.loader.grub.enable = true;
 		boot.loader.grub.useOSProber = true;
 
-		environment.systemPackages = [ pkgs.solaar ];
-
+		environment.systemPackages = with pkgs; [ solaar ];
 		hardware.bluetooth.enable = true;
 
 		# Networking.
@@ -39,6 +38,10 @@
 		boot.kernelParams = [ "pci-stub.ids=10ec:b851" ]; 
 
 		services.fwupd.enable = true;
+		services.wivrn = {
+			enable = true;
+			openFirewall = true;
+		};
 		
 		# This value determines the NixOS release from which the default
 		# settings for stateful data, like file locations and database versions
