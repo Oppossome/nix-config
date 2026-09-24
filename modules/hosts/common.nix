@@ -52,10 +52,6 @@
             chgrp -R wheel /etc/nixos
             chmod -R g+rwX /etc/nixos
             chmod g+s /etc/nixos
-			
-            # Default ACLs so new files/dirs are group-writable automatically
-            setfacl -R -m g:wheel:rwX /etc/nixos
-            setfacl -R -d -m g:wheel:rwX /etc/nixos
         '';
 
 		# Services
