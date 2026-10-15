@@ -12,6 +12,8 @@
 
 		# Enable KDE Connect
 		programs.kdeconnect.enable = true;
+		# Disable KDE PIM (Personal Information Management) applications
+		programs.kde-pim.enable = false;
 		networking.firewall = rec {
 			allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
 			allowedUDPPortRanges = allowedTCPPortRanges;
