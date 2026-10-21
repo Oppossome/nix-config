@@ -7,9 +7,6 @@
 		home-manager.useUserPackages = true;
 		home-manager.sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
 
-		# Enable NUR from flake input (pure and pinned by flake.lock)
-		nixpkgs.overlays = [ inputs.nur.overlays.default ];
-
 		# Locale and time
 		i18n.defaultLocale = "en_US.UTF-8";
 		time.timeZone = "America/New_York";
