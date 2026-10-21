@@ -28,8 +28,6 @@
 			kdePackages.ksystemlog
 			kdePackages.isoimagewriter
 			kdePackages.fcitx5-configtool
-		 	nur.repos.ccicnce113424.waywallen-bin
-			nur.repos.ccicnce113424.waywallen-display-bin
 		];
 
 		i18n.inputMethod = {
