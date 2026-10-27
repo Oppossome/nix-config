@@ -2,10 +2,10 @@
     flake.nixosModules.programsDevelopmentOri = { pkgs, ... }: let
         ori = pkgs.stdenv.mkDerivation rec {
             pname = "ori";
-            version = "0.15.7";
+            version = "0.16.0";
             src = pkgs.fetchurl {
-                url = "https://github.com/OpenRouterLabs/ori-releases/releases/download/cli-${version}-d702b99/ori-linux-x64";
-                hash = "sha256-HnveiW6CMwHTIa5bIArL8Ba12i4fn2L+7uTXuEkjkXs=";
+                url = "https://github.com/OpenRouterLabs/ori-releases/releases/download/cli-${version}-a55b08b/ori-linux-x64";
+                hash = "sha256-Y2RLpdrNEuTQF0R4RXsfyi/9qY6QJ3O3hCmH/5L5Zyw=";
             };
             dontUnpack = true;
             dontStrip = true; # would corrupt the appended payload

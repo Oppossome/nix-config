@@ -5,7 +5,6 @@
 		environment.plasma6.excludePackages = with pkgs.kdePackages; [
 			elisa
 			kate
-			konsole
 			plasma-browser-integration
 			qrca
 		];
@@ -21,7 +20,6 @@
 
 		programs.partition-manager.enable = true;
 		environment.systemPackages = with pkgs; [
-			ghostty
 			kdePackages.kamoso
 			kdePackages.sddm-kcm # KDE SDDM Manager
 			kdePackages.filelight
