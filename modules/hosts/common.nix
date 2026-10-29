@@ -15,6 +15,9 @@
 		nix.settings.experimental-features = [ "nix-command" "flakes" ];
 		nixpkgs.config.allowUnfree = true;
 
+		# Run non-NixOS binaries that expect a standard dynamic loader
+		programs.nix-ld.enable = true;
+
 		# Nix maintenance and updates
 		system.autoUpgrade = {
 			enable = true;
