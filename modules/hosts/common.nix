@@ -16,7 +16,25 @@
 		nixpkgs.config.allowUnfree = true;
 
 		# Run non-NixOS binaries that expect a standard dynamic loader
-		programs.nix-ld.enable = true;
+		programs.nix-ld = {
+			enable = true;
+			libraries = with pkgs; [
+				zlib
+				zstd
+				stdenv.cc.cc
+				curl
+				openssl
+				attr
+				libssh
+				bzip2
+				libxml2
+				acl
+				libsodium
+				util-linux
+				xz
+				systemd
+			];
+		};
 
 		# Nix maintenance and updates
 		system.autoUpgrade = {
