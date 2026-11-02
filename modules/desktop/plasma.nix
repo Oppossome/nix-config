@@ -1,7 +1,7 @@
 { self, inputs, ... }: {
 	flake.nixosModules.desktopPlasma = { pkgs, helpers, lib, ... }: {
-		services.displayManager.sddm.enable = true;
 		services.desktopManager.plasma6.enable = true;
+		services.displayManager.plasma-login-manager.enable = true;
 		environment.plasma6.excludePackages = with pkgs.kdePackages; [
 			elisa
 			kate

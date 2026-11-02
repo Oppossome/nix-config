@@ -31,10 +31,6 @@
 		# Packages
 		environment.systemPackages = [ 
 			pkgs.solaar
-			(pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
-				[General]
-				background = "/etc/nixos/modules/hosts/laptop/wallpaper.png"
-			'')
 		];
 
 		# Hardware
