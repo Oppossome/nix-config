@@ -2,6 +2,10 @@
 	flake.nixosModules.hostsCommon = { pkgs, config, ... }: {
 		imports = [ inputs.home-manager.nixosModules.home-manager ];
 
+		# Raise the inotify watch limit to the amount recommended for development
+		# tooling (VS Code, webpack, etc.).
+		boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
+
 		# Home Manager
 		home-manager.useGlobalPkgs = true;
 		home-manager.useUserPackages = true;
