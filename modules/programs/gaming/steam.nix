@@ -17,14 +17,24 @@
 			};
 		}) ["gaming"];
 
+		users.users = helpers.mapUsers (_: {
+			extraGroups = [ "gamemode" ];
+		}) ["gaming"];
+
 		hardware.steam-hardware.enable = true;
 
-		programs.gamemode.enable = true;
+		programs.gamemode = {
+			enable = true;
+			settings.general.renice = 10;
+		};
 		programs.gamescope.enable = true;
 		programs.steam = {
 			enable = true;
 			extraCompatPackages = with pkgs; [ proton-ge-bin ];
 			remotePlay.openFirewall = true;
 		};
+		
+		boot.kernelModules = [ "ntsync" ];
+		services.udev.extraRules = ''KERNEL=="ntsync", MODE="0666"'';
 	};
 }
