@@ -4,7 +4,7 @@
 		
 		users.users.opossum = {
 			description = "Sera";
-			extraGroups = [ "networkmanager" "wheel" "docker" ];
+			extraGroups = [ "networkmanager" "wheel" ];
 			isNormalUser = true;
 		};
 

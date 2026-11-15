@@ -4,7 +4,7 @@
 		
 		users.users.odoo = {
 			description = "Odoo";
-			extraGroups = [ "networkmanager" "wheel" "docker" ];
+			extraGroups = [ "networkmanager" "wheel" ];
 			isNormalUser = true;
 		};
 

@@ -1,7 +1,9 @@
 { self, inputs, ... }: {
 	flake.nixosModules.shellZsh = { pkgs, ... }: {
-		programs.direnv.enable = true;
+		imports = [ inputs.nix-index-database.nixosModules.nix-index ];
 
+		programs.direnv.enable = true;
+		programs.nix-index-database.comma.enable = true;
 		programs.zoxide = {
 			enable = true;
 			enableZshIntegration = true;

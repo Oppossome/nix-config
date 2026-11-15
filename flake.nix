@@ -14,6 +14,12 @@
 			inputs.home-manager.follows = "home-manager";
 		};
 
+		nixos-hardware.url = "github:NixOS/nixos-hardware";
+		nix-index-database = {
+			url = "github:nix-community/nix-index-database";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
 		nix-flatpak.url = "github:gmodena/nix-flatpak";
 		llm-agents = {
 			url = "github:numtide/llm-agents.nix";

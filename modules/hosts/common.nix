@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-	flake.nixosModules.hostsCommon = { pkgs, config, ... }: {
+	flake.nixosModules.hostsCommon = { pkgs, lib, config, ... }: {
 		imports = [ inputs.home-manager.nixosModules.home-manager ];
 
 		# Raise the inotify watch limit to the amount recommended for development
@@ -17,8 +17,13 @@
 
 		# Nix configuration
 		nix.settings.experimental-features = [ "nix-command" "flakes" ];
+		nix.settings.auto-optimise-store = true;
 		nixpkgs.config.allowUnfree = true;
 
+		programs.appimage = {
+			enable = true;
+			binfmt = true;
+		};
 		# Run non-NixOS binaries that expect a standard dynamic loader
 		programs.nix-ld = {
 			enable = true;
@@ -44,10 +49,20 @@
 		system.autoUpgrade = {
 			enable = true;
 			flake = "/etc/nixos";
-			flags = [ "--print-build-logs" "--commit-lock-file" ];
+			upgrade = false;
+			flags = [ "--print-build-logs" "--recreate-lock-file" "--commit-lock-file" ];
 			dates = "02:00";
 			randomizedDelaySec = "45min";
 		};
+
+		systemd.services.nixos-upgrade.environment.XDG_CONFIG_HOME = "${pkgs.writeTextDir "git/config" (lib.generators.toGitINI {
+			safe.directory = "/etc/nixos";
+			user.name = "nixos-upgrade";
+			user.email = "root@${config.networking.hostName}";
+			core.sharedRepository = "group";
+		})}";
+
+		zramSwap.enable = true;
 
 		# Audio stack.
 		services.pulseaudio.enable = false;
@@ -69,14 +84,18 @@
 		};
 
 		# Keep nixos config tree writable for wheel users
-		# Keep nixos config tree writable for wheel users
-        system.activationScripts.nixosWheelOwnership.text = ''
-            chgrp -R wheel /etc/nixos
-            chmod -R g+rwX /etc/nixos
-            chmod g+s /etc/nixos
-        '';
+		system.activationScripts.nixosWheelOwnership.text = ''
+			chgrp -R wheel /etc/nixos
+			chmod -R g+rwX /etc/nixos
+			chmod g+s /etc/nixos
+		'';
 
 		# Services
 		services.printing.enable = true;
+		services.avahi = {
+			enable = true;
+			nssmdns4 = true;
+			openFirewall = true;
+		};
 	};
 }
