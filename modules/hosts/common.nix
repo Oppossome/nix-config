@@ -54,7 +54,14 @@
 			dates = "02:00";
 			randomizedDelaySec = "45min";
 		};
-
+		systemd.services.nixos-upgrade = {
+			startLimitIntervalSec = 3600;
+			startLimitBurst = 5;
+			serviceConfig = {
+				Restart = "on-failure";
+				RestartSec = "5min";
+			};
+		};
 		systemd.services.nixos-upgrade.environment.XDG_CONFIG_HOME = "${pkgs.writeTextDir "git/config" (lib.generators.toGitINI {
 			safe.directory = "/etc/nixos";
 			user.name = "nixos-upgrade";
